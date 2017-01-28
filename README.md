@@ -1,1 +1,1 @@
-This is the start of a ruby project for CS 408-1
+This is the start of our ruby project for CS 408-1
