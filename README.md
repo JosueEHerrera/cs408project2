@@ -1,1 +1,1 @@
-README
+This is the start of a ruby project for CS 408-1
