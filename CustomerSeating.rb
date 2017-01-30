@@ -19,7 +19,7 @@ class PriorityQueue
 	end
 
 	def <<(element)
-		@elements << element
+		@elements.push(element)
 	end
 
 	def pop
