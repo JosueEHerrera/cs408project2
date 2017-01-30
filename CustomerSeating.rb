@@ -29,10 +29,11 @@ class PriorityQueue
 end
 
 def startScreen
-	puts "Welcome to the seat orginizer. What would you like to do?"
+	puts "Welcome to the seat organziner. What would you like to do?"
 	puts "1. Add someone to the list"
 	puts "2. Get the next to be seated"
 	puts "3. Quit"
+	puts ""
 end
 
 def optionOne
@@ -43,16 +44,22 @@ def optionOne
 	p = gets
 	p.chomp
 	@q << Customer.new(name, p)
+	system "clear"
 end
 
 def optionTwo
+	system "clear"
 	puts "The next to be seated is #{@q.pop.name}"
+	puts "press ENTER key to continue"
+	gets
+	system "clear"
 end
 
 @q = PriorityQueue.new
 startScreen
 input = gets.to_i
 while(input != 3)
+system "clear"
 if input == 1
 	optionOne
 	startScreen
@@ -62,6 +69,7 @@ elsif input == 2
 end
 input = gets.to_i
 end
+system "clear"
 
 
 
