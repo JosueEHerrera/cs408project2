@@ -31,7 +31,6 @@ class PriorityQueue
 	end
 	
 	def get
-		#@elements.sort!
 		counter = 1
 		waitTime = 5
 		@elements.each do|x| 
@@ -50,13 +49,33 @@ def startScreen
 	puts ""
 end
 
-def optionOne
+
+
+def newCustomer(name, p)
+	@q << Customer.new(name, p)
+	system "clear"
+end
+
+def setName
 	puts "What is the customers name?"
-	name = gets
-	name.chomp
+	name = gets.chomp
+	return name
+end
+
+def nameCheck(name)
+	@q.elements.each do |x|
+		if name == x.name
+			puts "Please enter a Unique Name \n \n" 
+			return true
+		end
+	end
+	return false
+end
+
+
+def setPriority
 	puts "What is their priority (VIP,Important,Regular,Nobody)"
 	p = gets.chomp
-	puts p
 	case p
 		when "VIP"
 			p = 1
@@ -67,11 +86,10 @@ def optionOne
 		when "Nobody"
 			p = 4
 		else
-			puts "Please enter a priority name"
-			optionOne
-		end
-	@q << Customer.new(name, p)
-	system "clear"
+			puts "Please enter a valid priority name \n \n"
+			p = 0
+	end
+	return p
 end
 
 def optionTwo
@@ -106,7 +124,16 @@ input = gets.to_i
 while(input != 4)
 system "clear"
 if input == 1
-	optionOne
+	str = setName
+	while nameCheck(str)
+		str = setName
+	end
+	p = setPriority
+	while p == 0
+		p = setPriority
+	end
+	newCustomer(str,p)
+	system "clear"
 	startScreen
 elsif input == 2
 	optionTwo
