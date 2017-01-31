@@ -29,13 +29,20 @@ class PriorityQueue
 	def pop
 		@elements.delete_at(0)
 	end
+
+	def getCurrentWaitTime
+		time = ((@elements.size + 2) / 2) * 5
+		puts "#{time} mins"
+	end
 	
 	def get
 		counter = 1
+		wc = 2
 		waitTime = 5
 		@elements.each do|x| 
-			puts "#{counter}: #{x.name.chomp} wait time: #{waitTime*counter}"
+			puts "#{counter}: #{x.name.chomp} approx. wait time: #{waitTime*(wc/2)} mins"
 			counter += 1
+			wc +=1
 		end 
 	end 
 end
@@ -45,7 +52,8 @@ def startScreen
 	puts "1. Add someone to the list"
 	puts "2. Get the next to be seated"
 	puts "3. Show full list"
-	puts "4. Quit"
+	puts "4. Get current approx wait time"
+	puts "5. Quit"
 	puts ""
 end
 
@@ -106,6 +114,7 @@ def optionTwo
 	system "clear"
 	end
 end
+
 def optionThree
 	system "clear"
 	puts "Currently Waiting: "
@@ -116,12 +125,21 @@ def optionThree
 
 end 
 
+def optionFour
+	system "clear"
+	puts "The current approx wait time is: "
+	@q.getCurrentWaitTime
+	puts "press ENTER key to continue"
+	gets
+	system "clear"
+end
+
 
 
 @q = PriorityQueue.new
 startScreen
 input = gets.to_i
-while(input != 4)
+while(input != 5)
 system "clear"
 if input == 1
 	str = setName
@@ -141,7 +159,10 @@ elsif input == 2
 elsif input == 3
 	optionThree
 	startScreen
-elsif input > 4 or input < 1
+elsif input == 4
+	optionFour
+	startScreen
+elsif input > 5 or input < 1
 	puts "Please only use options 1, 2, 3, or 4"
 	puts ""
 	startScreen
