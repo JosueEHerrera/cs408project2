@@ -113,6 +113,7 @@ def optionTwo
 	gets
 	system "clear"
 	end
+
 end
 
 def optionThree
@@ -139,36 +140,38 @@ end
 @q = PriorityQueue.new
 startScreen
 input = gets.to_i
-while(input != 5)
-system "clear"
-if input == 1
-	str = setName
-	while nameCheck(str)
-		str = setName
-	end
-	p = setPriority
-	while p == 0
-		p = setPriority
-	end
-	newCustomer(str,p)
+
+until input == 5
 	system "clear"
-	startScreen
-elsif input == 2
-	optionTwo
-	startScreen
-elsif input == 3
-	optionThree
-	startScreen
-elsif input == 4
-	optionFour
-	startScreen
-elsif input > 5 or input < 1
-	puts "Please only use options 1, 2, 3, or 4"
-	puts ""
-	startScreen
+	if input == 1
+		str = setName
+		while nameCheck(str)
+			str = setName
+		end
+		p = setPriority
+		while p == 0
+			p = setPriority
+		end
+		newCustomer(str,p)
+		system "clear"
+		startScreen
+	elsif input == 2
+		optionTwo
+		startScreen
+	elsif input == 3
+		optionThree
+		startScreen
+	elsif input == 4
+		optionFour
+		startScreen
+	elsif input > 5 or input < 1
+		puts "Please only use options 1, 2, 3, or 4"
+		puts ""
+		startScreen
+	end
+	input = gets.to_i
 end
-input = gets.to_i
-end
+
 system "clear"
 
 
